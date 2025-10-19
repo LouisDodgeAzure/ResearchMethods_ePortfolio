@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>E‑Portfolio – Module Unit Summaries</title>
-  <meta name="description" content="Single‑page e‑portfolio template that supports local development and GitHub Pages via a simple mode flag, auto‑discovering per‑unit JSON files." />
+  <title>E‑Portfolio – Unit Summaries</title>
+  <meta name="description" content="Single‑page e‑portfolio template with auto‑discovered attachments and icons based on file extensions. Supports local dev and GitHub Pages." />
   <style>
     :root { --bg:#f8fafc; --surface:#ffffff; --text:#0f172a; --muted:#475569; --border:#e2e8f0; --accent:#2563eb; --chip:#eaf2ff; --focus:#94a3b8; --radius-xl:16px; --shadow-sm:0 2px 8px rgba(2,6,23,.05); --shadow-md:0 8px 24px rgba(2,6,23,.08); --maxw:1200px; }
     @media (prefers-color-scheme: dark){ :root{ --bg:#0b1220; --surface:#0f172a; --text:#e6edf7; --muted:#94a3b8; --border:#1f2a44; --accent:#60a5fa; --chip:#0b234a; --focus:#334155; --shadow-sm:0 2px 8px rgba(0,0,0,.3); --shadow-md:0 12px 28px rgba(0,0,0,.35);} }
@@ -34,12 +34,9 @@
     .unit h2{margin:0;font-size:clamp(1.1rem,1.2rem + .4vw,1.6rem);line-height:1.25;letter-spacing:.2px}
     .unit h2 .hash{opacity:0;transition:opacity .2s ease;margin-left:8px;font-weight:700;color:var(--accent)}
     .unit:hover h2 .hash{opacity:1}
-
-    /* CONSISTENT SUMMARY LAYOUT */
     .unit .summary{display:grid;row-gap:10px;border-left:3px solid color-mix(in hsl, var(--accent), transparent 70%);padding-left:12px}
     .unit .summary p{margin:0;display:grid;grid-template-columns:12ch 1fr;column-gap:12px;align-items:start}
     .unit .summary p .label{color:var(--muted);font-weight:600}
-
     .docs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:12px}
     .doc{display:grid;gap:4px;padding:10px 12px;border:1px dashed color-mix(in hsl, var(--accent), var(--border) 75%);border-radius:12px}
     .doc a{font-weight:600} .doc small{color:var(--muted)}
@@ -74,17 +71,15 @@
     <main id="content" role="main">
       <section class="intro" aria-labelledby="intro-title">
         <h1 id="intro-title" style="margin-top:0">About this e‑portfolio</h1>
-        <p>This page supports <strong>both local and GitHub</strong> data sources via a simple flag:</p>
+        <p>Files can now be <strong>auto‑discovered</strong> per unit from a folder (no JSON editing). Icons and titles are inferred from the <em>filename</em> and <em>extension</em>.</p>
         <ul>
-          <li><b>local</b>: loads <code>units/*.json</code> from the same folder as this page (optionally via a <code>units/index.json</code> manifest).</li>
-          <li><b>github</b>: auto‑discovers <code>units/*.json</code> via the GitHub API from your public repo.</li>
-          <li><b>auto</b>: uses <b>local</b> on <code>localhost</code>/<code>127.0.0.1</code>/<code>file:</code>, otherwise <b>github</b>.</li>
+          <li>Place files under <code>attachments/units/&lt;unit-id&gt;/</code> (e.g., <code>attachments/units/unit-5/Reflective activity 2 (Cambridge Analytica).docx</code>).</li>
+          <li>GitHub mode lists files via the GitHub API. Local mode uses a small manifest at <code>attachments/index.json</code>.</li>
         </ul>
         <div class="meta">
           <span class="chip">Local dev mode</span>
-          <span class="chip">GitHub Pages ready</span>
-          <span class="chip">Per‑unit documents</span>
-          <span class="chip">Anchor links</span>
+          <span class="chip">GitHub auto‑discover</span>
+          <span class="chip">Icons by extension</span>
         </div>
       </section>
 
@@ -103,28 +98,47 @@
         user: 'LouisDodgeAzure',
         repo: 'ResearchMethods_ePortfolio',
         branch: 'main',      // or 'gh-pages'
-        unitsDir: 'units'    // e.g. /units/unit-1.json
+        unitsDir: 'units'
       },
       local: {
-        unitsDir: 'units',               // where unit JSONs live locally
-        useManifest: true,               // set true to use units/index.json
-        manifest: 'units/index.json',    // a JSON array of filenames
-        probePattern: 'unit-${n}.json',  // fallback if no manifest
+        unitsDir: 'units',
+        useManifest: true,
+        manifest: 'units/index.json',
+        probePattern: 'unit-${n}.json',
         startAt: 1,
         maxUnits: 30
+      },
+      docs: {
+        mode: 'auto', // 'github' | 'local' | 'auto'
+        baseDirGithub: 'attachments/units',
+        baseDirLocal: 'attachments/units',
+        localManifest: 'attachments/index.json' // { "unit-1": ["file1.docx", ...], ... }
       }
     };
 
     // --------------- Helpers ---------------
     function resolveHref(href){ try{ return new URL(href, window.location.origin + window.location.pathname).href; }catch{ return href; } }
-    function fileIcon(t){ const type=(t||'').toLowerCase(); if(type.includes('pdf'))return'📄'; if(type.includes('slide')||type.includes('ppt'))return'📽️'; if(type.includes('doc'))return'📝'; if(type.includes('sheet')||type.includes('xls'))return'📊'; if(type.includes('code'))return'🧩'; if(type.includes('page')||type.includes('html'))return'🔗'; return'🔗'; }
-    function computeWordCount(str){ if(!str) return 0; return (str.trim().match(/\b\w+\b/g)||[]).length; }
+    function fileIconByExt(filename){
+      const ext = (filename.split('.').pop()||'').toLowerCase();
+      if(['pdf'].includes(ext)) return '📄';
+      if(['doc','docx','rtf','odt'].includes(ext)) return '📝';
+      if(['xls','xlsx','csv','ods'].includes(ext)) return '📊';
+      if(['ppt','pptx','key'].includes(ext)) return '📽️';
+      if(['png','jpg','jpeg','gif','svg','webp'].includes(ext)) return '🖼️';
+      if(['html','htm','md','txt'].includes(ext)) return '🔗';
+      if(['zip','7z','rar'].includes(ext)) return '🗂️';
+      return '🔗';
+    }
+    function prettyTitleFromFilename(name){
+      const noExt = name.replace(/\.[^.]+$/, '');
+      return decodeURIComponent(noExt).replace(/[\-_]+/g,' ').replace(/\s+/g,' ').trim();
+    }
 
     const elUnits = document.getElementById('units');
     const elToc = document.getElementById('tocList');
     const brandMeta = document.getElementById('brandMeta');
 
-    // ------------- Data loaders -------------
+    // ------------- Data loaders (units) -------------
     async function fetchGithubUnits(cfg){
       const base = `https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/${cfg.unitsDir}?ref=${cfg.branch}`;
       const listResp = await fetch(base);
@@ -154,8 +168,6 @@
               if(r.ok) units.push(await r.json());
             }
             return units;
-          } else {
-            console.warn('Manifest not found, falling back to probe.');
           }
         }catch(err){ console.warn('Manifest load error, falling back to probe.', err); }
       }
@@ -169,6 +181,59 @@
         }catch{ /* ignore */ }
       }
       return units;
+    }
+
+    // ------------- Attachment discovery -------------
+    async function listGithubFilesForUnit(unitId){
+      const { user, repo, branch } = CONFIG.github;
+      const baseDir = CONFIG.docs.baseDirGithub.replace(/\/$/,'');
+      const url = `https://api.github.com/repos/${user}/${repo}/contents/${baseDir}/${unitId}?ref=${branch}`;
+      const resp = await fetch(url);
+      if(!resp.ok) return [];
+      const list = await resp.json();
+      return list.filter(x => x.type === 'file').map(x => x.name);
+    }
+
+    async function listLocalFilesForUnit(unitId){
+      // Requires a simple manifest at attachments/index.json => { "unit-2": ["file.docx", ...], ... }
+      try{
+        const m = await fetch(CONFIG.docs.localManifest, { cache: 'no-store' });
+        if(!m.ok) return [];
+        const map = await m.json();
+        return Array.isArray(map?.[unitId]) ? map[unitId] : [];
+      }catch{ return []; }
+    }
+
+    async function attachDiscoveredDocs(units, mode){
+      const isGithub = mode === 'github';
+      const tasks = units.map(async u => {
+        if(!u || !u.id) return u;
+        let files = [];
+        if(isGithub){
+          files = await listGithubFilesForUnit(u.id);
+        } else {
+          files = await listLocalFilesForUnit(u.id);
+        }
+        const autoDocs = files.map(name => {
+          const title = prettyTitleFromFilename(name);
+          const icon = fileIconByExt(name);
+          let href;
+          if(isGithub){
+            const { user, repo, branch } = CONFIG.github;
+            const baseDir = CONFIG.docs.baseDirGithub.replace(/\/$/,'');
+            href = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${baseDir}/${u.id}/${encodeURIComponent(name)}`;
+          } else {
+            const baseDir = CONFIG.docs.baseDirLocal.replace(/\/$/,'');
+            href = `${baseDir}/${u.id}/${encodeURIComponent(name)}`;
+          }
+          return { title, href, type: name.split('.').pop(), desc: '' };
+        });
+        // Merge with any existing declared documents (if any)
+        const declared = Array.isArray(u.documents) ? u.documents : [];
+        u.documents = [...declared, ...autoDocs];
+        return u;
+      });
+      return Promise.all(tasks);
     }
 
     // --------------- Renderer ---------------
@@ -203,7 +268,7 @@
             </div>
             ${docs.length?`<div class="docs">${docs.map(d=>`
               <div class="doc">
-                <a href="${resolveHref(d.href)}" target="_blank" rel="noopener">${fileIcon(d.type)} ${d.title||d.href}</a>
+                <a href="${resolveHref(d.href)}" target="_blank" rel="noopener">${fileIconByExt(d.href)} ${d.title||d.href}</a>
                 ${d.desc?`<small>${d.desc}</small>`:''}
               </div>`).join('')}</div>`:''}
             ${Array.isArray(u.references)&&u.references.length?`<ol class="refs">${u.references.map(r=>`<li>${r}</li>`).join('')}</ol>`:''}
@@ -216,15 +281,22 @@
     (async function boot(){
       let units = [];
       const isLocalHost = ['localhost','127.0.0.1','::1'].includes(location.hostname) || location.protocol === 'file:';
-      const mode = CONFIG.mode === 'auto' ? (isLocalHost ? 'local' : 'github') : CONFIG.mode;
+      const pageMode = CONFIG.mode === 'auto' ? (isLocalHost ? 'local' : 'github') : CONFIG.mode;
       try{
-        units = (mode === 'local') ? await fetchLocalUnits(CONFIG.local) : await fetchGithubUnits(CONFIG.github);
+        units = (pageMode === 'local') ? await fetchLocalUnits(CONFIG.local) : await fetchGithubUnits(CONFIG.github);
       }catch(e){
         console.error(e);
         const err = document.createElement('p');
-        err.textContent = `Failed to load units in ${mode} mode. Check CONFIG and file paths.`;
+        err.textContent = `Failed to load units in ${pageMode} mode. Check CONFIG and file paths.`;
         document.getElementById('content').appendChild(err);
       }
+
+      // Attach auto‑discovered documents
+      const docsMode = CONFIG.docs.mode === 'auto' ? (pageMode) : CONFIG.docs.mode;
+      try{
+        units = await attachDiscoveredDocs(units, docsMode);
+      }catch(e){ console.warn('Auto‑docs failed:', e); }
+
       render(units);
     })();
   </script>
