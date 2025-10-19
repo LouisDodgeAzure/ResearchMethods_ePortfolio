@@ -70,17 +70,8 @@
 
     <main id="content" role="main">
       <section class="intro" aria-labelledby="intro-title">
-        <h1 id="intro-title" style="margin-top:0">About this e‑portfolio</h1>
-        <p>Files can now be <strong>auto‑discovered</strong> per unit from a folder (no JSON editing). Icons and titles are inferred from the <em>filename</em> and <em>extension</em>.</p>
-        <ul>
-          <li>Place files under <code>attachments/units/&lt;unit-id&gt;/</code> (e.g., <code>attachments/units/unit-5/Reflective activity 2 (Cambridge Analytica).docx</code>).</li>
-          <li>GitHub mode lists files via the GitHub API. Local mode uses a small manifest at <code>attachments/index.json</code>.</li>
-        </ul>
-        <div class="meta">
-          <span class="chip">Local dev mode</span>
-          <span class="chip">GitHub auto‑discover</span>
-          <span class="chip">Icons by extension</span>
-        </div>
+        <h1 id="intro-title" style="margin-top:0">Welcome</h1>
+        <p>Welcome to my e‑portfolio for <strong>Methods and Professional Practice (July 2025 B)!</strong>.</p>
       </section>
 
       <div class="units" id="units"></div>
@@ -95,8 +86,8 @@
       module: 'Methods and Professional Practice July 2025 B.',
       academicYear: '2025',
       github: {
-        user: 'LouisDodgeAzure',
-        repo: 'ResearchMethods_ePortfolio',
+        user: 'your-github-username',
+        repo: 'your-repo',
         branch: 'main',      // or 'gh-pages'
         unitsDir: 'units'
       },
@@ -109,7 +100,7 @@
         maxUnits: 30
       },
       docs: {
-        mode: 'auto', // 'github' | 'local' | 'auto'
+        mode: 'local', // 'github' | 'local' | 'auto'
         baseDirGithub: 'attachments/units',
         baseDirLocal: 'attachments/units',
         localManifest: 'attachments/index.json' // { "unit-1": ["file1.docx", ...], ... }
@@ -292,7 +283,7 @@
       }
 
       // Attach auto‑discovered documents
-      const docsMode = CONFIG.docs.mode === 'auto' ? (pageMode) : CONFIG.docs.mode;
+      const docsMode = 'local'; // Always use manifest on both local and GitHub
       try{
         units = await attachDiscoveredDocs(units, docsMode);
       }catch(e){ console.warn('Auto‑docs failed:', e); }
