@@ -1,0 +1,14 @@
+{
+  "id": "unit-4",
+  "number": 4,
+  "title": "Case Studies, Focus Groups and Observations",
+  "activities": "Examined qualitative data collection methods including case studies and focus groups; engaged critically with Wohlin's (2021) investigation revealing that approximately 50% of software engineering studies labelled \"case studies\" do not meet definitional criteria; studied guidelines for conducting rigourous case study research (Priya, 2021; Kaplan and Maxwell, 2005).",
+  "skills": "Gained practical understanding of case study design including appropriate contexts, limitations (generalisability, researcher bias), and threats to external validity; learned focus group methodology including participant selection criteria (6–10 individuals, common background) and emphasis on exploratory \"why/what/how\" questions; developed awareness of correct application of research method labels.",
+  "impact": "Building on Unit 3's theoretical foundations, this unit provided concrete tools for operationalising research questions. Wohlin's findings were particularly sobering, as I discovered that half of published \"case studies\" are mislabelled, highlighting the importance of methodological precision. This reinforced Unit 2's lesson about rigourous academic standards and made me more cautious about my own research proposal design. Understanding that case studies cannot establish causation challenged my initial assumption that in‑depth investigation automatically yields generalisable insights, prompting more careful consideration of when qualitative methods are appropriate versus when quantitative approaches might be necessary.",
+  "documents": [],
+  "references": [
+    "Wohlin, C. (2021) ‘Case study research in software engineering—It is a case, and it is a study, but is it a case study?’, Information and Software Technology, 133, 106514. https://doi.org/10.1016/j.infsof.2021.106514.",
+    "Priya, A. (2021) ‘Case study methodology of qualitative research: Key attributes and navigating the conundrums in its application’, Sociological Bulletin, 70(1), pp. 94–110. https://doi.org/10.1177/0038022920970318.",
+    "Kaplan, B. and Maxwell, J.A. (2005) ‘Qualitative research methods for evaluating computer information systems’, in Anderson, J.G. and Aydin, C.E. (eds) Evaluating the Organizational Impact of Healthcare Information Systems. New York: Springer, pp. 30–55. https://doi.org/10.1007/0-387-30329-4_2."
+  ]
+}

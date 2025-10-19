@@ -1,0 +1,10 @@
+{
+  "id": "unit-10",
+  "number": 10,
+  "title": "Research Writing",
+  "activities": "Studied research writing conventions and dissertation structure; developed a research proposal investigating graph‑based privilege escalation detection in Azure cloud environments, including methodology design, literature positioning, timeline planning, and ethical considerations.",
+  "skills": "Gained competency in structuring research proposals with clear research questions, aims, and objectives; learned to design rigourous evaluation protocols including ground‑truth establishment through cross‑tool validation; developed ability to anticipate methodological challenges (e.g., Azure convergence delays, inter‑rater reliability procedures).",
+  "impact": "This unit drew together learning from prior units. The statistical foundations from Units 6–9 enabled my evaluation design using McNemar's test and stratified analysis. Unit 4's emphasis on methodological rigour informed my corpus generation protocols. Unit 9's validity concepts shaped ground‑truth oracle design. The unforeseen complexity of establishing reliable ground truth has led me to allocate significantly more time to that task in my dissertation plan than I originally anticipated.",
+  "documents": [],
+  "references": []
+}

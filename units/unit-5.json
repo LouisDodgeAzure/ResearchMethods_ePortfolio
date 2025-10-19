@@ -1,0 +1,10 @@
+{
+  "id": "unit-5",
+  "number": 5,
+  "title": "Interviews, Survey Methods, and Questionnaire Design",
+  "activities": "Studied questionnaire design principles including question formulation, response scales, and pre‑testing protocols; learned sampling theory including population versus sample definitions and sampling methods; examined response rate optimisation strategies; authored reflective analysis on the Cambridge Analytica scandal, exploring ethical violations in survey‑based data collection.",
+  "skills": "Gained practical understanding of survey design and validation; developed knowledge of sampling strategies and their implications for generalisability; learned to identify threats to data integrity including response bias and non‑response; strengthened ability to apply ethical frameworks (informed consent, privacy, harm avoidance) to quantitative research contexts; recognised regulatory implications of data misuse (GDPR enforcement).",
+  "impact": "Building on Unit 4's qualitative methods, in this unit I expanded my methodological toolkit by introducing more quantitative approaches. The Cambridge Analytica case provided a bridge to Unit 1's ethical foundations as an example of how surveys, when divorced from ethical oversight, can become instruments of manipulation rather than legitimate research. The case's exponential data collection (270,000 participants expanding to 87 million via Facebook's API) demonstrated how digital architectures can amplify ethical failures at unprecedented scale. Overall this unit highlighted that certain data collection approaches carry inherent privacy risks requiring additional safeguards.",
+  "documents": [],
+  "references": []
+}

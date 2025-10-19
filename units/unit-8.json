@@ -1,0 +1,14 @@
+{
+  "id": "unit-8",
+  "number": 8,
+  "title": "Data Analysis and Visualisation",
+  "activities": "Completed inference worksheet applying null hypothesis testing and p‑value interpretation; studied qualitative data analysis through data coding techniques (BRM, 2021); explored data visualisation principles including chart selection criteria; engaged with the FT Visual Vocabulary Guide and Berenson et al. (2015) chapters on graphical presentation and statistical analysis.",
+  "skills": "Gained competency in selecting appropriate visualisations based on data type and analytical purpose (histograms for distribution, spine charts for deviation, bar charts for comparison); learned qualitative coding methodology for thematic analysis; strengthened hypothesis testing skills through application of p‑values and statistical significance.",
+  "impact": "In this unit, I significantly improved my awareness of the variety of visualisations available, as well as how best to apply them. I also came to recognise the ways in which visualisation choices shape interpretations. For instance, changing whether a given axis starts from 0 can dramatically alter how viewers perceive differences between data points, potentially exaggerating or downplaying trends.",
+  "documents": [],
+  "references": [
+    "Business Research Methodology (2021) ‘Qualitative data analysis’. Available at: https://research-methodology.net/research-methods/data-analysis/qualitative-data-analysis/ (Accessed: 1 October 2025).",
+    "Financial Times (2023) Charts that work: FT visual vocabulary guide. Available at: https://ft-interactive.github.io/visual-vocabulary/ (Accessed: 1 October 2025).",
+    "Berenson, M.L., Levine, D.M. and Szabat, K.A. (2015) Basic Business Statistics: Concepts and Applications. 13th edn. Harlow: Pearson."
+  ]
+}

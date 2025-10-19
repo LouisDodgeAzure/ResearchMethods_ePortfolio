@@ -1,0 +1,12 @@
+{
+  "id": "unit-6",
+  "number": 6,
+  "title": "Quantitative Methods - Descriptive and Inferential Statistics",
+  "activities": "Studied foundational quantitative methods including data organisation (datasets, variables, observations), levels of measurement (nominal, ordinal, interval, ratio), and descriptive statistical techniques; engaged with Berenson et al. (2019) covering visualisation techniques, measures of location (mean, median, mode), and measures of dispersion (range, variance, standard deviation).",
+  "skills": "Gained ability to distinguish between levels of measurement and select appropriate statistical techniques accordingly; learned to calculate and interpret measures of central tendency and variability; developed competency in organising raw data into structured datasets suitable for analysis; understood the foundational concepts for data visualisation that would be expanded in Unit 8.",
+  "impact": "Building on Unit 5's survey design principles, in this unit I expanded my understanding of how to analyse, describe and visualise quantitative data. Understanding that different measurement levels require different statistical approaches reinforced Unit 4's lesson about methodological precision. Just as mislabelling research designs undermines validity, applying inappropriate statistics to data produces meaningless results.",
+  "documents": [],
+  "references": [
+    "Berenson, M.L., Levine, D.M. and Szabat, K.A. (2019) Basic Business Statistics: Concepts and Applications. 14th edn. Harlow: Pearson."
+  ]
+}
